@@ -3,7 +3,7 @@ $string= "Dhanashri";
 $reversed= scalar reverse("$string");
 
 print "\nThe reverse value is $reversed\n";
-if($string==$reversed)
+if($string eq $reversed)
 {
 	print "\nThe string is a palindrome\n";
 }
