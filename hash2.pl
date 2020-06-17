@@ -25,9 +25,18 @@ if(exists $machine{'user12'})
 }
 @unallocated = @machine{qw(user4 user6 user7)};
 
-while(($key,$value)=each (%machine))
+#while(($key,$value)=each (%machine))
+#{
+#	print "$key=>$value\n";
+#}
+foreach $k (sort keys %machine)
 {
-	print "$key=>$value\n";
+	if(!defined $machine{$k}){next;}
+	else
+	{
+		print "$k=>$machine{$k}\n";
+	}
 }
+
 @sorted =  sort values %machine;
 print "@sorted\n";
