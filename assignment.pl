@@ -1,17 +1,27 @@
 #!/usr/bin/perl
+use strict;
+use warnings;
 
-$filename = "/home/dhanashri/Test1/file1.txt";
-open($fh, '<:encoding(UTF-8)',$filename)
+sub getProd{
+my $filename = "/home/dhanashri/Test1/file1.txt";
+open(FILE, '<:encoding(UTF-8)',$filename)
 	or die "Could not open file '$filename' $!";
-while($row = <$fh>)
+
+my $rows = <FILE>;
+chomp @rows;
+print "$row[0]\n";
+my $feature = shift;
+foreach $word (@rows)
 {
-	chomp $row;
-	print "$row\n";
-	if($row=~m/^INCREMENT/)
+	print "$word\n";
+	if($word=~m/^(INCREMENT)\s$feature\s$/)
 	{
-		print "matched\n";
-		@words = split / /,$row;
-		print "@words[1]\n";
+		push @product,$word;
 	}
 }
-close $fh;
+print "@product\n";
+close FILE;
+}
+
+my $product = getProd('MATLAB');
+print "$product\n";
