@@ -2,6 +2,10 @@
 #use strict;
 use warnings;
 use Data::Dumper qw(Dumper);
+use 5.010;
+use Getopt::Long qw(GetOptions);
+
+#GetOptions(product =>\&getprod);
 
 #getprod(SIMULINK);
 #getfeature('MATLAB-pp2');
