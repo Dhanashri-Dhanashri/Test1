@@ -11,7 +11,8 @@ GetOptions('product=s'=>\$product,
 			'feature=s'=>\$feature,
 			'from=s'=>\$from);
 			
-if(defined $from){
+if(defined $from)
+{
 	gethash();
 	if(defined $product)
 	{
@@ -25,6 +26,7 @@ if(defined $from){
 else{print "Couldnt find options\n";}
 
 my %hash=();
+
 #subroutine to get hash
 sub gethash{
 	my $filename = $from;
