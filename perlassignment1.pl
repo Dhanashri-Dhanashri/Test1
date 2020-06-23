@@ -71,11 +71,6 @@ sub getproduct
 		{
 			print "The product with given feature is:",@{$hash{$k}},"\n";
 		}
-		else
-		{
-			print "Please check if the given product is appropriate\n";
-			exit;
-		}
 	}
 	return;
 }
@@ -93,11 +88,6 @@ sub getfeature
 			if($x eq $inputproduct)
 			{
 				print "The feature of the given product is:",$key,"\n";
-			}
-			else
-			{
-				print "Please check if the given feature is appropriate\n";
-				exit;
 			}
 		}
 	}
