@@ -36,10 +36,10 @@ sub gethash{
 		or die "Could not open the file:$!\n";
 	my $feature;
 	while(my $line=<FILE>)
-	{	
+	{	next if ($line=~/#.*/);
 		chomp $line;
 		 my @productpattern=$line=~m/product=[a-zA-Z0-9-]+/g;	
-		 my @featurepattern=$line=~/\b^INCREMENT\s[a-zA-Z0-9]*\b/g;
+		 my @featurepattern=$line=~/\b^INCREMENT\s[a-zA-Z0-9_]*\b/g;
 		 foreach my $s (@featurepattern)
 		{
 			my @finalfeaturearray = split(/\s+/,$s);
@@ -52,7 +52,7 @@ sub gethash{
 		{
 			my @finalproductarray;
 			@finalproductarray = split(/=+/,$p);
-			push @{$hash{$feature}},$finalproductarray[1]  unless ($feature eq '');
+			push @{$hash{$feature}},$finalproductarray[1]  if (defined $feature && (!($feature eq '')));
 		}
 	}
 	close FILE;
@@ -64,12 +64,14 @@ sub getproduct
 	print "Getting product\n";
 	my $inputfeature= shift;
 	print "The feature parameter is:".$inputfeature."\n";
+	print Dumper(\%hash);
 	my @keys= keys %hash;
 	foreach my $k (@keys)
 	{
 		if ($k eq $inputfeature)
 		{
 			print "The product with given feature is:",@{$hash{$k}},"\n";
+			
 		}
 	}
 	return;
@@ -80,6 +82,7 @@ sub getfeature
 	print "Getting feature\n";
 	my $inputproduct=shift;
 	print "The product parameter is:",$inputproduct,"\n";
+	print Dumper(\%hash);
 	while(my ($key,$value)= each %hash)
 	{
 		my @values=@{$value};
